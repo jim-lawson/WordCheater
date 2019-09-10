@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {Animated, StyleSheet, Text, View} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import {AvailableWordsHelpText, SolveWordHelpText} from './helpText';
+import React, { useEffect, useState } from 'react'
+import { Animated, StyleSheet, Text, View } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import { AvailableWordsHelpText, SolveWordHelpText } from './helpText'
 
 const Help = props => {
   const {
@@ -10,25 +10,26 @@ const Help = props => {
     containerPosition,
     showHelp,
     onShowHelp,
-    onHideHelp,
-  } = props;
+    onHideHelp
+  } = props
 
-  const [opacity] = useState(new Animated.Value(0));
+  const [opacity] = useState(new Animated.Value(0))
 
   useEffect(() => {
     Animated.timing(opacity, {
       toValue: showHelp ? 1 : 0,
       duration: 250,
-      useNativeDriver: true,
-    }).start();
-  }, [showHelp]);
+      useNativeDriver: true
+    }).start()
+  }, [showHelp])
 
   return (
     <View
       style={[
         styles.helpContainer,
-        {width: availableWidth, zIndex: showHelp ? 1 : -1},
-      ]}>
+        { width: availableWidth, zIndex: showHelp ? 1 : -1 }
+      ]}
+    >
       <View>
         <Icon
           name="help"
@@ -36,15 +37,16 @@ const Help = props => {
           style={[styles.helpIcon, iconPosition]}
           onPress={() => {
             if (showHelp) {
-              onHideHelp();
+              onHideHelp()
             } else {
-              onShowHelp();
+              onShowHelp()
             }
           }}
         />
       </View>
       <Animated.View
-        style={[styles.helpTextContainer, containerPosition, {opacity}]}>
+        style={[styles.helpTextContainer, containerPosition, { opacity }]}
+      >
         <View style={styles.helpTextTitleRow}>
           <Text style={styles.helpTextTitle}>Help</Text>
           <View style={styles.helpCloseIconContainer}>
@@ -52,7 +54,7 @@ const Help = props => {
               name="close"
               size={30}
               onPress={() => {
-                onHideHelp();
+                onHideHelp()
               }}
               style={styles.helpCloseIcon}
             />
@@ -70,18 +72,18 @@ const Help = props => {
         </View>
       </Animated.View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   helpContainer: {
     position: 'absolute',
     left: 0,
-    top: 0,
+    top: 0
   },
   helpIcon: {
     color: '#555',
-    position: 'absolute',
+    position: 'absolute'
   },
   helpTextContainer: {
     position: 'absolute',
@@ -91,35 +93,35 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderWidth: 2,
     borderColor: '#666',
-    borderRadius: 10,
+    borderRadius: 10
   },
   helpTextTitleRow: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   helpCloseIconContainer: {
     flexGrow: 1,
-    alignItems: 'flex-end',
+    alignItems: 'flex-end'
   },
   helpCloseIcon: {
-    color: '#aaa',
+    color: '#aaa'
   },
   helpTextTitle: {
     marginBottom: 20,
     fontSize: 22,
-    color: '#eee',
+    color: '#eee'
   },
   helpTextRow: {
-    marginBottom: 20,
+    marginBottom: 20
   },
   helpTextHeading: {
     fontSize: 16,
     fontWeight: '600',
     color: '#2A9FD6',
     marginBottom: 10,
-    textTransform: 'uppercase',
+    textTransform: 'uppercase'
   },
-  helpText: {fontSize: 15, color: '#ccc'},
-});
+  helpText: { fontSize: 15, color: '#ccc' }
+})
 
-export default Help;
+export default Help

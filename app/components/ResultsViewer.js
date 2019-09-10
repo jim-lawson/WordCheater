@@ -1,6 +1,6 @@
-import React from 'react';
-import {Animated, ScrollView, StyleSheet, Text, View} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import React from 'react'
+import { Animated, ScrollView, StyleSheet, Text, View } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const ResultsViewer = props => {
   const {
@@ -9,12 +9,13 @@ const ResultsViewer = props => {
     screenHeight,
     suggestedWordHeight,
     topPosition,
-    onHide,
-  } = props;
+    onHide
+  } = props
 
   return (
     <Animated.View
-      style={[styles.suggestedWordsContainer, {left: 10, top: topPosition}]}>
+      style={[styles.suggestedWordsContainer, { left: 10, top: topPosition }]}
+    >
       <View
         style={{
           borderWidth: 3,
@@ -24,8 +25,9 @@ const ResultsViewer = props => {
           height: screenHeight - 160,
           paddingHorizontal: 50,
           paddingVertical: 25,
-          backgroundColor: '#333',
-        }}>
+          backgroundColor: '#333'
+        }}
+      >
         <Icon
           name="close"
           size={30}
@@ -33,18 +35,19 @@ const ResultsViewer = props => {
             color: '#aaa',
             position: 'absolute',
             right: 10,
-            top: 10,
+            top: 10
           }}
           onPress={onHide}
         />
         <ScrollView>
           {results.map(word => (
-            <View key={word} style={{height: suggestedWordHeight}}>
+            <View key={word} style={{ height: suggestedWordHeight }}>
               <Text
                 style={[
                   styles.suggestedWord,
-                  {fontSize: suggestedWordHeight - 10},
-                ]}>
+                  { fontSize: suggestedWordHeight - 10 }
+                ]}
+              >
                 {word}
               </Text>
             </View>
@@ -52,17 +55,17 @@ const ResultsViewer = props => {
         </ScrollView>
       </View>
     </Animated.View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   suggestedWordsContainer: {
-    position: 'absolute',
+    position: 'absolute'
   },
   suggestedWord: {
     textAlign: 'center',
-    color: '#cccc00',
-  },
-});
+    color: '#cccc00'
+  }
+})
 
-export default ResultsViewer;
+export default ResultsViewer

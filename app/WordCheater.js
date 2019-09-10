@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useState} from 'react';
+import React, { useLayoutEffect, useState } from 'react'
 import {
   Animated,
   Dimensions,
@@ -8,19 +8,19 @@ import {
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  View,
-} from 'react-native';
-import bgImage from './images/background.jpg';
-import NumberOfLettersInput from './components/NumberOfLettersInput';
-import LettersInput from './components/LettersInput';
-import LetterPicker from './components/LetterPicker';
-import Title from './components/Title';
-import Heading from './components/Heading';
-import ResultViewer from './components/ResultsViewer';
-import Help from './components/help/Help';
+  View
+} from 'react-native'
+import bgImage from './images/background.jpg'
+import NumberOfLettersInput from './components/NumberOfLettersInput'
+import LettersInput from './components/LettersInput'
+import LetterPicker from './components/LetterPicker'
+import Title from './components/Title'
+import Heading from './components/Heading'
+import ResultViewer from './components/ResultsViewer'
+import Help from './components/help/Help'
 
-const DisableIntro = false;
-const TopMargin = 35;
+const DisableIntro = false
+const TopMargin = 35
 
 const WordCheater = props => {
   const {
@@ -55,31 +55,32 @@ const WordCheater = props => {
     handleSolvedLetterPress,
     showHelp,
     onShowHelp,
-    onHideHelp,
-  } = props;
+    onHideHelp
+  } = props
 
-  const [screenWidth, setScreenWidth] = useState(0);
-  const [screenHeight, setScreenHeight] = useState(0);
+  const [screenWidth, setScreenWidth] = useState(0)
+  const [screenHeight, setScreenHeight] = useState(0)
 
   useLayoutEffect(() => {
-    width = Math.round(Dimensions.get('window').width);
-    height = Math.round(Dimensions.get('window').height);
-    setScreenWidth(width);
-    setScreenHeight(height);
-  }, []);
+    width = Math.round(Dimensions.get('window').width)
+    height = Math.round(Dimensions.get('window').height)
+    setScreenWidth(width)
+    setScreenHeight(height)
+  }, [])
 
   return (
     <View style={styles.container}>
       <Animated.View
         style={{
-          opacity: bgFade,
-        }}>
+          opacity: bgFade
+        }}
+      >
         <Image
           source={bgImage}
           style={{
             position: 'absolute',
             width: screenWidth,
-            height: screenHeight,
+            height: screenHeight
           }}
         />
       </Animated.View>
@@ -89,25 +90,27 @@ const WordCheater = props => {
           onIntroComplete={() => {
             Animated.timing(bgFade, {
               toValue: 0.25,
-              duration: 250,
-            }).start();
+              duration: 250
+            }).start()
             Animated.timing(contentFade, {
               toValue: 1,
-              duration: 250,
-            }).start();
+              duration: 250
+            }).start()
           }}
         />
       )}
       <Animated.View
-        style={[styles.content, {opacity: DisableIntro ? 1 : contentFade}]}>
+        style={[styles.content, { opacity: DisableIntro ? 1 : contentFade }]}
+      >
         <StatusBar hidden />
         <TouchableWithoutFeedback onPressIn={handleBackgroundPressIn}>
           <View style={styles.body}>
             <View
               style={{
                 flexDirection: 'column',
-                alignItems: 'center',
-              }}>
+                alignItems: 'center'
+              }}
+            >
               <View style={styles.appRow}>
                 <View>
                   <Heading headingText={'AVAILABLE LETTERS'} />
@@ -135,7 +138,7 @@ const WordCheater = props => {
                   minimumValue={minPuzzleLetters}
                   maximumValue={Math.min(
                     numberOfAvailableLetters,
-                    maxPuzzleLetters,
+                    maxPuzzleLetters
                   )}
                   onChange={handleNumLettersChange}
                   onCleared={handleClearSolvedWordsClick}
@@ -152,17 +155,19 @@ const WordCheater = props => {
               <View>
                 <TouchableOpacity
                   style={styles.findButton}
-                  onPress={handleFindWordsClick}>
+                  onPress={handleFindWordsClick}
+                >
                   <Text style={styles.findButtonText}>Find Words</Text>
                 </TouchableOpacity>
               </View>
-              <Animated.View style={{opacity: suggestionResultsEmptyFade}}>
+              <Animated.View style={{ opacity: suggestionResultsEmptyFade }}>
                 <Text
                   style={{
                     color: '#cccc00',
                     padding: 20,
-                    fontSize: 20,
-                  }}>
+                    fontSize: 20
+                  }}
+                >
                   No words found
                 </Text>
               </Animated.View>
@@ -176,14 +181,15 @@ const WordCheater = props => {
                   top: availableLetterPickerTopAnim,
                   transform: [
                     {
-                      scaleX: availableLetterPickerAnim,
+                      scaleX: availableLetterPickerAnim
                     },
                     {
-                      scaleY: availableLetterPickerAnim,
-                    },
-                  ],
-                },
-              ]}>
+                      scaleY: availableLetterPickerAnim
+                    }
+                  ]
+                }
+              ]}
+            >
               <LetterPicker onPicked={handleAvailableLetterChange} />
             </Animated.View>
 
@@ -195,22 +201,23 @@ const WordCheater = props => {
                   top: solvedLetterPickerTopAnim,
                   transform: [
                     {
-                      scaleX: solvedLetterPickerAnim,
+                      scaleX: solvedLetterPickerAnim
                     },
                     {
-                      scaleY: solvedLetterPickerAnim,
-                    },
-                  ],
-                },
-              ]}>
+                      scaleY: solvedLetterPickerAnim
+                    }
+                  ]
+                }
+              ]}
+            >
               <LetterPicker onPicked={handleSolvedLetterChange} />
             </Animated.View>
           </View>
         </TouchableWithoutFeedback>
         <Help
           availableWidth={screenWidth}
-          iconPosition={{top: -20, right: 20}}
-          containerPosition={{top: 90, left: 0, right: 0}}
+          iconPosition={{ top: -20, right: 20 }}
+          containerPosition={{ top: 90, left: 0, right: 0 }}
           showHelp={showHelp}
           onShowHelp={onShowHelp}
           onHideHelp={onHideHelp}
@@ -225,25 +232,25 @@ const WordCheater = props => {
         onHide={handleHideSuggestedWordsClick}
       />
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#000',
-    flex: 1,
+    flex: 1
   },
   content: {
     marginTop: TopMargin,
-    flex: 1,
+    flex: 1
   },
   body: {
     marginTop: 70,
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   appRow: {
-    marginTop: 30,
+    marginTop: 30
   },
   findButton: {
     marginTop: 40,
@@ -252,27 +259,27 @@ const styles = StyleSheet.create({
     width: 150,
     height: 35,
     justifyContent: 'center',
-    backgroundColor: '#2A9FD6',
+    backgroundColor: '#2A9FD6'
   },
   findButtonText: {
     textAlign: 'center',
     fontSize: 20,
-    color: '#000',
+    color: '#000'
   },
   suggestedWordsContainer: {
-    position: 'absolute',
+    position: 'absolute'
   },
   suggestedWordContainer: {
-    height: 50,
+    height: 50
   },
   suggestedWord: {
     textAlign: 'center',
     fontSize: 40,
-    color: '#cccc00',
+    color: '#cccc00'
   },
   letterPickerContainer: {
-    position: 'absolute',
-  },
-});
+    position: 'absolute'
+  }
+})
 
-export default WordCheater;
+export default WordCheater

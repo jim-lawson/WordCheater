@@ -4,8 +4,8 @@ export const AvailableWordsHelpText = {
 
 Enter the letters by tapping on the first box and typing the letters. Order does not matter.
 
-Be sure to include duplicate letters. For example, if you have two E's in your available letters, enter E twice.`,
-};
+Be sure to include duplicate letters. For example, if you have two E's in your available letters, enter E twice.`
+}
 
 export const SolveWordHelpText = {
   title: 'Word to Solve',
@@ -13,5 +13,5 @@ export const SolveWordHelpText = {
 
 Enter any letters that have already been revealed for your word by tapping on the ? in one or more of the boxes. 
 
-Be sure to enter each letter IN THE SAME POSITION it appears in your game.`,
-};
+Be sure to enter each letter IN THE SAME POSITION it appears in your game.`
+}
